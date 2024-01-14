@@ -1,6 +1,7 @@
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 
 public class Game {
@@ -11,8 +12,8 @@ public class Game {
     private static String currentWord;
 
     public static void start() {
-        currentWord = Words.getWord();
         Scanner scanner = new Scanner(System.in);
+        currentWord = Words.getWord();
         displayWord = new StringBuilder();
         displayWord.append("_".repeat(currentWord.length()));
         usedLetters = new HashSet<>();
@@ -22,20 +23,21 @@ public class Game {
             draw(countOfErrors);
             do {
                 System.out.print("Введите букву: ");
-                input = scanner.next();
+                input = scanner.next().toLowerCase();
             } while (!validate(input));
             usedLetters.add(input);
             if (currentWord.contains(input)) {
                 mapping(input);
                 if (!displayWord.toString().contains("_")) {
                     System.out.println("Вы победили!");
+                    System.out.println(currentWord.toUpperCase() + " - это слово было загадано\n");
                     break;
                 }
             } else {
                 countOfErrors += 1;
                 if (countOfErrors == MAX_ERROR) {
                     System.out.println("Вы проиграли!");
-                    System.out.println(currentWord.toUpperCase() + " - это слово было загадано");
+                    System.out.println(currentWord.toUpperCase() + " - это слово было загадано\n");
                     break;
                 }
             }
@@ -44,7 +46,10 @@ public class Game {
 
     private static boolean validate(String input) {
         if (input.length() > 1) {
-            System.out.println("Нельзя вводить более одной буквы!");
+            System.out.println("Нельзя вводить более одной буквы");
+            return false;
+        } else if (!Pattern.matches("[а-яА-Я]", input)) {
+            System.out.println("Вы ввели не букву");
             return false;
         } else if (usedLetters.contains(input)) {
             System.out.println("Такая буква уже использовалась");
