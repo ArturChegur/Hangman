@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Words {
     private static final Random rand = new Random();
-    private static final List<String> VOCABLURARY = new ArrayList<>();
+    private static final List<String> VOCABULARY = new ArrayList<>();
 
     static {
         Scanner scanner = null;
@@ -19,13 +19,13 @@ public class Words {
             throw new RuntimeException(e);
         }
         while (scanner.hasNextLine()) {
-            VOCABLURARY.add(scanner.nextLine());
+            VOCABULARY.add(scanner.nextLine());
         }
         scanner.close();
     }
 
     public static String getWord() {
-        int index = rand.nextInt(VOCABLURARY.size());
-        return VOCABLURARY.get(index);
+        int index = rand.nextInt(VOCABULARY.size());
+        return VOCABULARY.get(index);
     }
 }

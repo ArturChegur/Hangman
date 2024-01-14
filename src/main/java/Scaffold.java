@@ -56,7 +56,7 @@ public class Scaffold {
                 "=========");
     }
 
-    public static String getImage(Integer indexOfPhase) {
+    public static String getImage(int indexOfPhase) {
         return SCAFFOLD.get(indexOfPhase);
     }
 }
