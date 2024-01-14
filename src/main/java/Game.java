@@ -2,7 +2,6 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import org.w3c.dom.ls.LSOutput;
 
 public class Game {
     private static final int MAX_ERROR = 7;
@@ -10,7 +9,6 @@ public class Game {
     private static int countOfErrors = 0;
     private static StringBuilder displayWord;
     private static String currentWord;
-
 
     public static void start() {
         currentWord = Words.getWord();
